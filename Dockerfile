@@ -1,6 +1,22 @@
-# we will use openjdk 8 with alpine as it is a very small linux distro
+FROM gradle:7.4.1-jdk17-alpine AS TEMP_BUILD_IMAGE
+ENV APP_HOME=/usr/app/
+WORKDIR $APP_HOME
+COPY build.gradle settings.gradle $APP_HOME
+
+COPY gradle $APP_HOME/gradle
+COPY --chown=gradle:gradle . /home/gradle/src
+USER root
+RUN chown -R gradle /home/gradle/src
+
+RUN gradle build || return 0
+COPY . .
+RUN gradle clean build
 FROM openjdk:17
-# copy the packaged jar file into our docker image
-COPY build/libs/FlightApi-0.0.1-SNAPSHOT.jar /app.jar
-# set the startup command to execute the jar
-CMD ["java", "-jar", "/app.jar"]
+ENV ARTIFACT_NAME=FlightApi-0.0.1-SNAPSHOT.jar
+ENV APP_HOME=/usr/app/
+
+WORKDIR $APP_HOME
+COPY --from=TEMP_BUILD_IMAGE $APP_HOME/build/libs/$ARTIFACT_NAME .
+
+EXPOSE 8080
+ENTRYPOINT exec java -jar ${ARTIFACT_NAME}
