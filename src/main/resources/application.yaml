@@ -1,0 +1,6 @@
+logging:
+  level:
+    root: INFO
+
+clientId: "pcVqhKoClIDBscwO1lWanGF0wvjBgyX2"
+clientSecret: "l8aGW9zA7DNGkhBS"
