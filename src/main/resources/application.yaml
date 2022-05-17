@@ -2,5 +2,10 @@ logging:
   level:
     root: INFO
 
+management:
+  endpoint:
+    health:
+      show-details: always
+
 clientId: "pcVqhKoClIDBscwO1lWanGF0wvjBgyX2"
 clientSecret: "l8aGW9zA7DNGkhBS"
