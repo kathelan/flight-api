@@ -1,22 +1,24 @@
 package pl.kathelan.flightapi.configuration;
 
 import com.amadeus.Amadeus;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 
+@Slf4j
 @Service
 public class AmadeusClient {
 
-    private final static Logger LOGGER = Logger.getLogger(AmadeusClient.class.getName());
-
-    @Value("${clientId}")
+    @Value("sm://AMADEUS_CLIENT_ID")
     private String clientId;
-    @Value("${clientSecret}")
+    @Value("sm://AMADEUS_CLIENT_SECRET")
     private String clientSecret;
 
+    @PostConstruct
     public Amadeus getAmadeusObj() {
-        return Amadeus.builder(clientId, clientSecret).setLogger(LOGGER).build();
+        log.info("clientId: {} clientSecret: {}",clientId ,clientSecret);
+        return Amadeus.builder(clientId, clientSecret).build();
     }
 }
