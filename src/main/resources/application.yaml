@@ -3,15 +3,12 @@ logging:
     root: INFO
 
 management:
-  security:
-    enabled: false
+  health:
+    diskspace:
+      enabled: false
   endpoint:
     health:
       show-details: always
-
-endpoints:
-  health:
-    sensitive: false
 
 
 clientId: "pcVqhKoClIDBscwO1lWanGF0wvjBgyX2"
