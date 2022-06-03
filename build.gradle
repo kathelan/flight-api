@@ -28,6 +28,10 @@ dependencies {
 
     implementation 'com.google.cloud:spring-cloud-gcp-starter-secretmanager:3.3.0'
 
+    implementation platform('com.google.cloud:libraries-bom:25.3.0')
+
+    implementation 'com.google.cloud:google-cloud-storage'
+
 
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
