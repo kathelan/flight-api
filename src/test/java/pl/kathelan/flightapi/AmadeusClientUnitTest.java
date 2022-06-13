@@ -12,7 +12,7 @@ import pl.kathelan.flightapi.configuration.AmadeusClient;
 import static org.mockito.Mockito.*;
 
 @ActiveProfiles("test")
-@SpringBootTest
+@SpringBootTest(properties = {"spring.cloud.gcp.secretmanager.enabled=false"})
 @PropertySource("classpath:application-test.yaml")
 public class AmadeusClientUnitTest {
 
