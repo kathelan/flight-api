@@ -10,6 +10,9 @@ management:
     health:
       show-details: always
 
+greeting: ${sm://greeting}
+
+
 
 clientId: "pcVqhKoClIDBscwO1lWanGF0wvjBgyX2"
 clientSecret: "l8aGW9zA7DNGkhBS"
